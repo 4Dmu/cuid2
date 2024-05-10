@@ -19,9 +19,9 @@ var defaultAlphabet = createAlphabet()
 
 type GenOpts struct {
 	alphabet    []rune
-	Length      *int
-	Fingerprint *string
-	Counter     *func() int
+	Length      int
+	Fingerprint string
+	Counter     func() int
 }
 
 type Gen struct {
@@ -43,22 +43,22 @@ func New(opts GenOpts) Gen {
 		alphabet = opts.alphabet
 	}
 
-	if opts.Fingerprint == nil {
+	if opts.Fingerprint == "" {
 		fingerprint = defaultFingerprint
 	} else {
-		fingerprint = *opts.Fingerprint
+		fingerprint = opts.Fingerprint
 	}
 
-	if opts.Length == nil {
+	if opts.Length == 0 {
 		length = defaultLength
 	} else {
-		length = *opts.Length
+		length = opts.Length
 	}
 
 	if opts.Counter == nil {
 		counter = defaultCounter
 	} else {
-		counter = *opts.Counter
+		counter = opts.Counter
 	}
 
 	return Gen{alphabet: alphabet, fingerprint: fingerprint, counter: counter, length: length}
