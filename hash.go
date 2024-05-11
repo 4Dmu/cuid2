@@ -5,7 +5,7 @@ import (
 	"math/big"
 )
 
-func bufToInt64(buf []byte) *big.Int {
+func bufToBigInt(buf []byte) *big.Int {
 	var bits uint = 8
 	value := big.NewInt(0)
 	for _, v := range buf {
@@ -18,6 +18,6 @@ func hash(input string) string {
 	hasher := sha512.New()
 	hasher.Write([]byte(input))
 	bytes := hasher.Sum(nil)
-	num := bufToInt64(bytes)
+	num := bufToBigInt(bytes)
 	return base36EncodeBigint(num)[1:]
 }

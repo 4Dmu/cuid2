@@ -40,3 +40,11 @@ func createCounter(count int) Counter {
 		return count + 1
 	}
 }
+
+func keys[M ~map[K]V, K comparable, V any](m M) []K {
+	r := make([]K, 0, len(m))
+	for v := range m {
+		r = append(r, v)
+	}
+	return r
+}
